@@ -1,10 +1,21 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [somedata, setSomedata] = useState();
+
+  useEffect(()=>{
+    async function getSomethingFromBack() {
+      const backendUrl = 'http://localhost:9090/api';
+      const data = await fetch(backendUrl);
+      const jsonedData = await data.json();
+      setSomedata(jsonedData['data']);
+    }
+    getSomethingFromBack();
+  }, [])
 
   return (
     <>
@@ -21,6 +32,9 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        <div>
+          { somedata ? somedata : 'loading...' }
+        </div>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>

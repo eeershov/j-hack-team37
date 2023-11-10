@@ -1,0 +1,24 @@
+# Use an official Node.js runtime as a parent image
+FROM node:20-alpine3.17
+
+# Set the working directory to /backendapp
+WORKDIR /server
+
+# Copy the package.json and package-lock.json files to the working directory
+COPY package*.json ./
+
+# Install app dependencies
+RUN npm install
+
+# Copy the rest of the application code to the working directory
+COPY . .
+
+# Set the environment variable for the app
+ENV NODE_ENV development
+ENV PORT 9090
+
+# Expose the port on which the app is listening
+EXPOSE 9090
+
+# Start the app
+CMD ["npm", "run", "dev"]

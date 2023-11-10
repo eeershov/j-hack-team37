@@ -1,0 +1,59 @@
+# to run dev build
+# docker-compose --file docker-compose.dev.yml up --build -d
+
+# delete all volumes
+# docker system prune --volumes
+
+version: '3.9'
+
+services:
+  backend:
+    container_name: backend-j-hack
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
+    ports:
+      - 9090:9090
+    volumes:
+      - ${PWD}/backend:/backend
+      - ${PWD}/backend/node_modules:/backend/node_modules
+    environment:
+      TZ: 'Europe/Moscow'
+      NODE_ENV: development
+      PORT: '9090'
+    networks:
+      - backend_net
+
+  client:
+    container_name: client-j-hack
+    build:
+      context: ./client
+      dockerfile: Dockerfile.dev
+    ports:
+      - 5173:5173
+    volumes:
+      - ${PWD}/client:/client
+      - ${PWD}/client/node_modules:/client/node_modules
+    networks:
+      - backend_net
+    depends_on:
+      - backend
+
+  nginx:
+    container_name: nginx-j-hack
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - backend
+      - client
+    networks:
+      - backend_net
+
+volumes:
+  db_data:
+
+networks:
+  backend_net:
