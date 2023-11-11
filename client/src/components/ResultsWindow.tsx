@@ -13,9 +13,9 @@ const resultsWindow = function () {
             <img src={resultBoy} className="leftFearGirl" alt="leftfg" />
             <img src={resultGirl} className="rightFearGirl" alt="rightfg" />
             <div className="buttonContainer result-btn">
-            <button  className="button buttonDescription">ПРАВИЛА ИГРЫ</button>
+            <button  onClick={(WindowCheck) => {WindowCheck = 1}}className="button buttonDescription">ПРАВИЛА ИГРЫ</button>
             <button  className="button buttonDescription clickedButton">ОПИСАНИЕ СТРАХОВ </button>
-            <button  className="button buttonStart">НАЧАТЬ ИГРУ</button>
+            <button  className="button buttonStart">НАЧАТЬ ЗАНОВО</button>
             </div>
         </div>
     );
