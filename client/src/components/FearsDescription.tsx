@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import bg from '../assets/background.svg'
 import fears from '../assets/fears.svg'
 import leftFearsGirl from '../assets/leftFearsGirl.svg'
