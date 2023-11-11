@@ -8,13 +8,13 @@ function App() {
   const WindowCheck = 0;
   let window;
 if (WindowCheck === 0) {
-  window = <StartMenu/>;
+  window = <Game/>;
 } else if (WindowCheck === 1) {
   window = <FearsDescription/>;
 } else if (WindowCheck === 2) {
   window = <ResultsWindow/>;
 } else {
-  window = <Game/>;
+  window = <StartMenu/>;
 }
 
   return (

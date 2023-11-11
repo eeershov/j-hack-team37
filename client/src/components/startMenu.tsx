@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import girlMainMenu from '../assets/girlMainMenu.svg'
 import BoyMainMenu from '../assets/BoyMainMenu.svg'
 import header from '../assets/header.svg'
@@ -21,9 +20,8 @@ const StartMenu = function () {
             <h3 className="rules">У вас есть 15 секунд, чтобы "отстрелять" <br/> как можно больше страхов</h3>
             <div className="buttonContainer btn-1">
             <button onClick={goToFears} className="button buttonDescription">Описание страхов </button>
-             <button  className="button buttonStart">Начать игру</button>
+            <button  className="button buttonStart">Начать игру</button>
             </div>
-             
         </span>
         </>
     );

@@ -3,6 +3,9 @@ import Duck from './Duck';
 import { DuckType } from '../../interfaces/Duck';
 import { v4 as uuidv4 } from 'uuid';
 import './game.css';
+import Stopwatch from '../StopWatch';
+import { useAppSelector, useAppDispatch } from '../../app/hooks';
+import { startRestart } from './gameSlice';
 
 const possibleDuckies: DuckType[] = [
   { id: 1, name: 'Предательство', speed: 300 },
@@ -23,12 +26,14 @@ const Game: React.FC = () => {
   const [score, setScore] = useState(0);
   const [ducks, setDucks] = useState<React.ReactElement[]>([]);
   const [HEIGHT, WIDTH] = [400, 600];
-
+  const isGameStarted = useAppSelector((state) => state.game.isGameStarted);
+  const dispatch = useAppDispatch();
+  
 
   const handleFrag = () => {
     setScore(current => current + 1);
   };
-
+  
   useEffect(()=>{
     setDucks(
       possibleDuckies.map(duck => 
@@ -48,13 +53,18 @@ const Game: React.FC = () => {
     )
   }, [HEIGHT, WIDTH])
 
+  if(score===12) {
+    dispatch(startRestart());
+  }
+
   return (
     <div className="Game">
       <h1>Game</h1>
       <p>Score: {score}</p>
+      <Stopwatch />
       <div className="game-container">
         {
-          ducks
+          isGameStarted ? ducks : <button onClick={() => dispatch(startRestart())}>START GAME {isGameStarted}</button>
         }
       </div>
     </div>
