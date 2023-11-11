@@ -1,10 +1,10 @@
-import bg from '../assets/фоновая картинка.svg'
+import bg from '../assets/background.svg'
 import resultBoy from '../assets/resultBoy.svg'
 import resultGirl from '../assets/resultGirl.svg'
 import header from '../assets/header.svg'
 
 const resultsWindow = function () {
- const score = 0;
+    const score = 0;
     return (
         <div>
             <img src={bg} className="background" alt="bg" />
@@ -13,7 +13,7 @@ const resultsWindow = function () {
             <img src={resultBoy} className="leftFearGirl" alt="leftfg" />
             <img src={resultGirl} className="rightFearGirl" alt="rightfg" />
             <div className="buttonContainer result-btn">
-            <button  onClick={(WindowCheck) => {WindowCheck = 1}}className="button buttonDescription">ПРАВИЛА ИГРЫ</button>
+            <button  onClick={() => {}}className="button buttonDescription">ПРАВИЛА ИГРЫ</button>
             <button  className="button buttonDescription clickedButton">ОПИСАНИЕ СТРАХОВ </button>
             <button  className="button buttonStart">НАЧАТЬ ЗАНОВО</button>
             </div>
