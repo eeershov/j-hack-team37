@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+
+import Game from './components/Game';
 import './App.css'
 import StartMenu from './components/startMenu.js'
 import ResultsWindow from './components/ResultsWindow.js'
@@ -26,7 +28,13 @@ if (WindowCheck === 0) {
 }
 
   return (
-    window
+    <>
+      {window}
+      <Game/>
+      <div>
+        { somedata ? somedata : 'loading...' }
+      </div>
+    </>
   )
 }
 
