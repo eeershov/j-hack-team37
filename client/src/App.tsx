@@ -1,26 +1,25 @@
-import { useEffect, useState } from 'react'
 import Game from './components/Game';
 import './App.css'
+import StartMenu from './components/startMenu.js'
+import ResultsWindow from './components/ResultsWindow.js'
+import FearsDescription from './components/FearsDescription.js'
 
 function App() {
-  const [somedata, setSomedata] = useState();
-
-  useEffect(()=>{
-    async function getSomethingFromBack() {
-      const backendUrl = 'http://localhost:9090/api';
-      const data = await fetch(backendUrl);
-      const jsonedData = await data.json();
-      setSomedata(jsonedData['data']);
-    }
-    getSomethingFromBack();
-  }, [])
+  const WindowCheck = 0;
+  let window;
+if (WindowCheck === 0) {
+  window = <StartMenu/>;
+} else if (WindowCheck === 1) {
+  window = <FearsDescription/>;
+} else if (WindowCheck === 2) {
+  window = <ResultsWindow/>;
+} else {
+  window = <Game/>;
+}
 
   return (
     <>
-      <Game/>
-      <div>
-        { somedata ? somedata : 'loading...' }
-      </div>
+      { window }
     </>
   )
 }
