@@ -51,6 +51,7 @@ const Game: React.FC = () => {
     )
   }, [HEIGHT, WIDTH])
 
+  // :^)
   if(score===240) {
     dispatch(playGame(false));
     dispatch(selectPage('Results'));

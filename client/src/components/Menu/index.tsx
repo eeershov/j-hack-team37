@@ -1,6 +1,6 @@
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { selectPage } from '../../app/gameSlice';
-import { pageName } from '../../interfaces/PageName';
+import { selectPage, resetGame } from '../../app/gameSlice';
+import { PageName, pageName } from '../../interfaces/PageName';
 
 export default function Menu() {
   const dispatch = useAppDispatch();
@@ -11,12 +11,19 @@ export default function Menu() {
     {pageName: pageName.fears, title: 'ОПИСАНИЕ СТРАХОВ'}, 
     {pageName: pageName.game, title: 'НАЧАТЬ ИГРУ'}]
 
+  const handleClick = (page: PageName) => {
+    dispatch(selectPage(page));
+    if(page === pageName.game) {
+      dispatch(resetGame());
+    }
+  }
+  
   return (
     <div className="buttonContainer">
       { 
       buttons.map(button => (
-        <button 
-          onClick={()=> dispatch(selectPage(button.pageName))} 
+        <button key={button.pageName}
+          onClick={()=> handleClick(button.pageName)} 
           className={`button buttonDescription  ${button.pageName === pageSelected && 'clickedButton'} ${button.pageName === "Game" && 'buttonStart'}  ${pageSelected === 'Game' && 'hiddenButtons'}`}
         >
         { button.title }
