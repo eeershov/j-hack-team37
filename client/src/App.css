@@ -43,8 +43,8 @@
 
 }
 .rules {
-  font-family: Gilroy;
   font-size: 28px;
+  
   font-weight: 500;
   line-height: 33px;
   letter-spacing: 0em;
@@ -54,7 +54,7 @@
 }
 
 .button {
-  font-family: Gilroy;
+  
   width: 318px;
   height: 68px;
   gap: 20px;
@@ -67,7 +67,6 @@
   font-weight: 500;
   line-height: 28px;
   letter-spacing: 0em;
-  
 }
 
 .buttonDescription {
@@ -156,25 +155,34 @@
   padding:  0px 0px 50px 0px;
   align-items: center;
   margin: 50px 0 0 500px;
+  bottom: 50px;
 }
 
 .leftFearGirl {
   position: absolute;
-  top: 290px;
-  left: 200px;
+  top: 250px;
+  width: 172.038px;
+  height: 393.034px;
+  flex-shrink: 0;
+  fill: #FFF;
+  margin: 0px 1624px 0px 170px
 }
 
 .rightFearGirl {
   position: absolute;
-  top: 290px;
-  right: 120px;
+  top: 250px;
+  transform: rotate(6.896deg);
+  width: 196.5px;
+  height: 393px;
+  flex-shrink: 0;
+  margin:   0px 0.5px 0px 1600.24px;
 }
 
 .clickedButton {
   border-radius: 30px;
   border: 2px solid #A4C2F7;
   color: #A4C2F7;
-font-family: Gilroy;
+
 font-size: 24px;
 font-style: normal;
 font-weight: 500;
@@ -191,15 +199,14 @@ line-height: normal;
 }
 
 .result-btn {
-  position: absolute;
-  bottom: 70px;
-  left: 320px;
-  padding: 150px;
+  position:relative;
+  top: 0px;
+  
 }
 
 .result-header {
   position: absolute;
-  top: 200px;
+  top: 0px;
 }
 
 .hiddenButtons {

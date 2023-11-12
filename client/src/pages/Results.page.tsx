@@ -18,7 +18,6 @@ const ResultsWindow = function () {
             <img src={header} className="header result-header" alt="header" /> 
             <h2 className="title title-result">ХОРОШАЯ РАБОТА! 
             <br/>КОЛИЧЕСТВО ОЧКОВ: {gameScore} <br/>ВРЕМЯ: {timeToHuman(gameTime)}</h2>
-            <p className=""></p>
             <img src={resultBoy} className="leftFearGirl" alt="leftfg" />
             <img src={resultGirl} className="rightFearGirl" alt="rightfg" />
             <Menu/>

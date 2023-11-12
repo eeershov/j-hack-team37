@@ -29,7 +29,7 @@ export default function Menu() {
         return (
         <button key={button.pageName}
           onClick={()=> handleClick(button.pageName)} 
-          className={`button buttonDescription  ${button.pageName === pageSelected && 'clickedButton'} ${button.pageName === "Game" && 'buttonStart'}  ${pageSelected === 'Game' && 'hiddenButtons'}`}
+          className={`button buttonDescription  ${button.pageName === pageSelected && 'clickedButton'} ${button.pageName === "Game" && 'buttonStart'}  ${pageSelected === 'Game' && 'hiddenButtons'} ${pageSelected === 'Results' && 'result-btn'}`}
         >
         { buttonTitle }
         </button>
