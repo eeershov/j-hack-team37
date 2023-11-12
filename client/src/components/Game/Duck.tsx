@@ -45,7 +45,21 @@ const Duck: React.FC<DuckProps> = ({ uId, duck, x, y }) => {
     left: `${position.x}px`,
     top: `${position.y}px`,
     transition: `${duckSpeed}ms`,
+    opacity: 1,
     fontSize: '10px',
+  };
+
+  const duckStyleRemoving: React.CSSProperties = {
+    position: "absolute",
+    left: `${position.x}px`,
+    top: `${position.y}px`,
+    transition: `opacity 0.5s`,
+    opacity: 0,
+    fontSize: '10px',
+  };
+
+  const handleAnimationEnd = (): void => {
+    clearInterval(duckMoveLoop.current);
   };
 
   if (hp) {
@@ -57,7 +71,15 @@ const Duck: React.FC<DuckProps> = ({ uId, duck, x, y }) => {
     </div>
   );
   } else {
-    clearInterval(duckMoveLoop.current);
+    return (
+      <div className="duck" style={duckStyleRemoving}
+        onTransitionEnd={handleAnimationEnd}
+      >
+        <p>Name: {uId} {duck.name}</p>
+        <p>Speed: {duck.speed}</p>
+        <MonsterIcon secondaryColor="red"/> 
+      </div>
+    );
   }
 };
 
