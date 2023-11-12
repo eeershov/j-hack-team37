@@ -21,14 +21,20 @@ export default function Menu() {
   return (
     <div className="buttonContainer">
       { 
-      buttons.map(button => (
+      buttons.map(button => {
+        let buttonTitle = button.title;
+        if(button.pageName === pageName.game && pageSelected === pageName.results ) {
+          buttonTitle = 'НАЧАТЬ ЗАНОВО'
+        }
+        return (
         <button key={button.pageName}
           onClick={()=> handleClick(button.pageName)} 
           className={`button buttonDescription  ${button.pageName === pageSelected && 'clickedButton'} ${button.pageName === "Game" && 'buttonStart'}  ${pageSelected === 'Game' && 'hiddenButtons'}`}
         >
-        { button.title }
+        { buttonTitle }
         </button>
-      )) 
+        )
+      }) 
       }
     </div>
   )
