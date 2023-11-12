@@ -12,8 +12,19 @@
   margin: 0 0 0px 700px;
 }
 .start-game-button {
-  color: black;
+  color: white;
+  font-size: 32px;
+  width: 100%;
   position: relative;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  background-color: #5C5772;
+  border: 0;
+}
+
+.start-game-button:hover {
+  background-color: #150E36;
 }
 
 .duck {

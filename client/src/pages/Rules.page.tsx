@@ -14,7 +14,7 @@ const StartMenu = function () {
         <img src={girlMainMenu} className="girlMenu" alt="girlMenu" />
         <span className='startMenu'>
             <h2 className="title">Мини-игра <br/> Страхи приемных детей</h2>
-            <h3 className="rules">Победите все страхи как можно быстрее, <br/> за каждый “убитый” страх вам начисляются очки. </h3>
+            <h3 className="rules">Одолейте все страхи как можно быстрее, <br/> за каждый побеждённый страх вам начисляются очки. </h3>
             <Menu/>
         </span>
         </>

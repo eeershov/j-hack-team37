@@ -52,7 +52,7 @@ const Game: React.FC = () => {
   }, [HEIGHT, WIDTH])
 
   // :^)
-  if(score===240) {
+  if(score>=240) {
     dispatch(playGame(false));
     dispatch(selectPage('Results'));
   }
@@ -60,11 +60,11 @@ const Game: React.FC = () => {
   return (
     <div className="Game">
       <h1 className='title-game'>УДАЧИ!</h1>
-      <p  className='score'>Score: {score}</p>
+      <p  className='score'>Счёт: {score}</p>
       <Stopwatch />
       <div className="game-container">
         {
-          isGameStarted ? ducks : <button className='start-game-button' onClick={() => dispatch(playGame(true))}>START GAME {isGameStarted}</button>
+          isGameStarted ? ducks : <button className='start-game-button' onClick={() => dispatch(playGame(true))}>НАЧАТЬ ИГРУ {isGameStarted}</button>
         }
       </div>
     </div>
