@@ -17,6 +17,7 @@ const Duck: React.FC<DuckProps> = ({ handleFrag, uId, duck, x, y }) => {
   const [hp, setHp] = useState(1);
   const duckMoveLoop = useRef(0);
   const duckSpeed = (600 - duck.speed) * 6;
+  const MonsterIcon = duck.monsterIcon;
 
   useEffect(() => {
     duckMoveLoop.current = setInterval(() => {
@@ -51,6 +52,7 @@ const Duck: React.FC<DuckProps> = ({ handleFrag, uId, duck, x, y }) => {
     <div onMouseDown={handleHit} className="duck" style={duckStyle}>
       <p>Name: {uId} {duck.name}</p>
       <p>Speed: {duck.speed}</p>
+      <MonsterIcon /> 
     </div>
   );
   } else {

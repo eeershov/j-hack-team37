@@ -1,0 +1,12 @@
+export { Monster1Icon } from "./Monster1.icon";
+export { Monster2Icon } from "./Monster2.icon";
+export { Monster3Icon } from "./Monster3.icon";
+export { Monster4Icon } from "./Monster4.icon";
+export { Monster5Icon } from "./Monster5.icon";
+export { Monster6Icon } from "./Monster6.icon";
+export { Monster7Icon } from "./Monster7.icon";
+export { Monster8Icon } from "./Monster8.icon";
+export { Monster9Icon } from "./Monster9.icon";
+export { Monster10Icon } from "./Monster10.icon";
+export { Monster11Icon } from "./Monster11.icon";
+export { Monster12Icon } from "./Monster12.icon";
