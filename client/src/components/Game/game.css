@@ -1,17 +1,28 @@
 .game-container {
+  display: flex;
+  justify-items: center;
+  align-content: center;
   background-color: white;
   position: relative;
-  width: 600px;
-  height: 400px;
+  width: 650px;
+  height: 450px;
   border: 1px solid #000000;
   margin: 100px 20px 20px 20px;
   overflow: hidden;
   margin: 0 0 0px 700px;
 }
+.start-game-button {
+  color: black;
+  position: relative;
+}
 
 .duck {
   position: absolute;
   cursor: pointer;
+}
+
+.duck p {
+  display: none;
 }
 
 .title-game {

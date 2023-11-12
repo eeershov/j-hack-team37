@@ -1,29 +1,29 @@
 import { useState, useEffect } from "react";
-import { useAppSelector } from "../../app/hooks";
+import { useAppSelector, useAppDispatch } from "../../app/hooks";
+import { setGameTime } from "../../app/gameSlice";
+import { timeToHuman } from "../../utils/timeToHuman";
 
 const Stopwatch = () => {
   const [time, setTime] = useState(0);
   const isGameStarted = useAppSelector((state) => state.game.isGameStarted);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     let intervalId: number;
     if (isGameStarted) {
-      intervalId = setInterval(() => setTime(time + 1), 10);
+      intervalId = setInterval(() => {
+        setTime(prevTime => prevTime + 1);
+        dispatch(setGameTime(time));
+      }, 10);
     }
     return () => clearInterval(intervalId);
-  }, [isGameStarted, time]);
+  }, [isGameStarted, time, dispatch]);
 
-  const hours = Math.floor(time / 360000);
-  const minutes = Math.floor((time % 360000) / 6000);
-  const seconds = Math.floor((time % 6000) / 100);
-  const milliseconds = time % 100;
 
   return (
     <div className="stopwatch-container">
       <p className="stopwatch-time">
-        {hours}:{minutes.toString().padStart(2, "0")}:
-        {seconds.toString().padStart(2, "0")}:
-        {milliseconds.toString().padStart(2, "0")}
+        { timeToHuman(time) }
       </p>
     </div>
   );

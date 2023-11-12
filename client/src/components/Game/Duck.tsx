@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { DuckType } from "../../interfaces/Duck";
-
+import { incrementScore } from "../../app/gameSlice";
+import { useAppDispatch } from "../../app/hooks";
 
 export interface DuckProps {
-  handleFrag: ()=>void;
   uId: string;
   duck: DuckType;
   x: number;
@@ -12,12 +12,13 @@ export interface DuckProps {
 
 const [HEIGHT, WIDTH] = [400, 600];
 
-const Duck: React.FC<DuckProps> = ({ handleFrag, uId, duck, x, y }) => {
+const Duck: React.FC<DuckProps> = ({ uId, duck, x, y }) => {
   const [position, setPosition] = useState({ x, y });
   const [hp, setHp] = useState(1);
   const duckMoveLoop = useRef(0);
   const duckSpeed = (600 - duck.speed) * 6;
   const MonsterIcon = duck.monsterIcon;
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     duckMoveLoop.current = setInterval(() => {
@@ -29,10 +30,10 @@ const Duck: React.FC<DuckProps> = ({ handleFrag, uId, duck, x, y }) => {
       });
     }, duckSpeed);
     if(!hp) {
-      handleFrag();
+      dispatch(incrementScore(1));
     }
     return () => clearInterval(duckMoveLoop.current)
-  }, [duckSpeed, hp, handleFrag]
+  }, [duckSpeed, hp, dispatch]
   );
 
   const handleHit = (): void => {

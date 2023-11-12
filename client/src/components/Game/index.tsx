@@ -5,9 +5,9 @@ import { v4 as uuidv4 } from 'uuid';
 import './game.css';
 import Stopwatch from '../StopWatch';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { startRestart } from '../../app/gameSlice';
+import { playGame, selectPage } from '../../app/gameSlice';
 import { Monster1Icon, Monster2Icon, Monster3Icon, Monster4Icon, Monster5Icon, Monster6Icon,
-Monster7Icon, Monster8Icon, Monster9Icon, Monster10Icon, Monster11Icon } from '../Icons';
+Monster7Icon, Monster8Icon, Monster9Icon, Monster10Icon, Monster11Icon, Monster12Icon } from '../Icons';
 
 const possibleDuckies: DuckType[] = [
   { id: 1, name: 'Предательство', speed: 300, monsterIcon: Monster1Icon },
@@ -16,26 +16,23 @@ const possibleDuckies: DuckType[] = [
   { id: 4, name: 'Темнота', speed: 150, monsterIcon: Monster4Icon },
   { id: 5, name: 'Новые места', speed: 300, monsterIcon: Monster5Icon },
   { id: 6, name: 'Непривычное, что подрывает ожидания', speed: 200, monsterIcon: Monster6Icon },
-  { id: 7, name: 'Боязнь быть осмеянным за жизнь в детском доме, боязнь выделяться', speed: 300, monsterIcon: Monster7Icon },
+  { id: 7, name: 'Боязнь быть осмеянным за жизнь в детском доме', speed: 300, monsterIcon: Monster7Icon },
   { id: 8, name: 'Взрослые люди', speed: 300, monsterIcon: Monster8Icon },
   { id: 9, name: 'Боязнь, что мама исчезнет', speed: 300, monsterIcon: Monster9Icon },
   { id: 10, name: 'Боязнь, что органы опеки отберут', speed: 300, monsterIcon: Monster10Icon },
   { id: 11, name: 'Врачи', speed: 300, monsterIcon: Monster11Icon },
+  { id: 12, name: 'Боязнь выделяться', speed: 300, monsterIcon: Monster12Icon },
 ]
 
 
 const Game: React.FC = () => {
-  const [score, setScore] = useState(0);
+  const score = useAppSelector((state) => state.game.gameScore);
   const [ducks, setDucks] = useState<React.ReactElement[]>([]);
   const [HEIGHT, WIDTH] = [400, 600];
   const isGameStarted = useAppSelector((state) => state.game.isGameStarted);
   const dispatch = useAppDispatch();
   
 
-  const handleFrag = () => {
-    setScore(current => current + 1);
-  };
-  
   useEffect(()=>{
     setDucks(
       possibleDuckies.map(duck => 
@@ -44,7 +41,6 @@ const Game: React.FC = () => {
           return (
             <Duck 
               key={uId} uId={uId}
-              handleFrag={handleFrag} 
               duck={duck} 
               x={(Math.random() * WIDTH) % WIDTH} 
               y={(Math.random() * HEIGHT) % HEIGHT}
@@ -56,7 +52,8 @@ const Game: React.FC = () => {
   }, [HEIGHT, WIDTH])
 
   if(score===12) {
-    dispatch(startRestart());
+    dispatch(playGame(false));
+    dispatch(selectPage('Results'));
   }
 
   return (
@@ -66,7 +63,7 @@ const Game: React.FC = () => {
       <Stopwatch />
       <div className="game-container">
         {
-          isGameStarted ? ducks : <button onClick={() => dispatch(startRestart())}>START GAME {isGameStarted}</button>
+          isGameStarted ? ducks : <button className='start-game-button' onClick={() => dispatch(playGame(true))}>START GAME {isGameStarted}</button>
         }
       </div>
     </div>
