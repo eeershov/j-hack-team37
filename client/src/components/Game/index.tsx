@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import './game.css';
 import Stopwatch from '../StopWatch';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { startRestart } from './gameSlice';
+import { startRestart } from '../../app/gameSlice';
 
 const possibleDuckies: DuckType[] = [
   { id: 1, name: 'Предательство', speed: 300 },

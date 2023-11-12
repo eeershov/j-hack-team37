@@ -1,7 +1,8 @@
-import bg from '../assets/background.svg'
-import fears from '../assets/fears.svg'
-import leftFearsGirl from '../assets/leftFearsGirl.svg'
-import rightFearsGirl from '../assets/rightFearsGirl.svg'
+import bg from '../assets/background.svg';
+import fears from '../assets/fears.svg';
+import leftFearsGirl from '../assets/leftFearsGirl.svg';
+import rightFearsGirl from '../assets/rightFearsGirl.svg';
+import Menu from '../components/Menu';
 
 const FearsDescription = function () {
 
@@ -12,11 +13,7 @@ const FearsDescription = function () {
             <img src={fears} className="fears" alt="fears" />
             <img src={leftFearsGirl} className="leftFearGirl" alt="leftfg" />
             <img src={rightFearsGirl} className="rightFearGirl" alt="rightfg" />
-            <div className="buttonContainer">
-            <button  className="button buttonDescription">ПРАВИЛА ИГРЫ</button>
-            <button  className="button buttonDescription clickedButton">ОПИСАНИЕ СТРАХОВ </button>
-            <button  className="button buttonStart">НАЧАТЬ ИГРУ</button>
-            </div>
+            <Menu/>
         </div>
     );
 }
