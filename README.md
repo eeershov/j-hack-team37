@@ -49,8 +49,8 @@ http://localhost:5173/
 
 или
 
-cd j-hack-team37
-docker-compose --file docker-compose.dev.yml up --build -d
+cd j-hack-team37 
+docker-compose --file docker-compose.dev.yml up --build -d 
 http://localhost/
 
 ### Ссылка на деплой:
