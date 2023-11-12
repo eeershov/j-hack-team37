@@ -34,10 +34,15 @@ export const gameSlice = createSlice({
     setGameTime: (state, action: PayloadAction<number>) => {
       state.gameTime = action.payload;
     },
+    resetGame: (state) => {
+      state.gameTime = 0;
+      state.gameScore = 0;
+      state.isGameStarted = false;
+    }
   },
 })
 
-export const { playGame, selectPage, incrementScore, setGameTime } = gameSlice.actions;
+export const { playGame, selectPage, incrementScore, setGameTime, resetGame } = gameSlice.actions;
 
 export const selectStore = (state: RootState) => state.game;
 
