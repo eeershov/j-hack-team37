@@ -1,4 +1,4 @@
-# Команда №37, [Благотворительный Хакатон для джунов 2023](https://pages.github.com/](https://jun-hackaton-landing.vercel.app/)
+# Команда №37, [Благотворительный Хакатон для джунов 2023]((https://jun-hackaton-landing.vercel.app/](https://jun-hackaton-landing.vercel.app/))
 
 ### Контакты:
 
