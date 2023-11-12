@@ -42,15 +42,14 @@ https://www.figma.com/file/5N4E7EM5Wbbw268hukZada/%D0%A1%D1%82%D1%80%D0%B0%D1%85
   - Боязнь, что органы опеки отберут - сложность: высокая, очки: +100
 
 ### Инструкция, как развернуть проект локально:
-
 cd j-hack-team37 && cd client
 npm run dev
 http://localhost:5173/
 
 или
 
-cd j-hack-team37 
-docker-compose --file docker-compose.dev.yml up --build -d 
+cd j-hack-team37
+docker-compose --file docker-compose.dev.yml up --build -d
 http://localhost/
 
 ### Ссылка на деплой:
