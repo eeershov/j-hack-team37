@@ -24,7 +24,7 @@ export default function Menu() {
       buttons.map(button => (
         <button key={button.pageName}
           onClick={()=> handleClick(button.pageName)} 
-          className={`button buttonDescription  ${button.pageName === pageSelected && 'clickedButton'} ${button.pageName === "Game" && 'buttonStart'}  ${pageSelected === 'Game' && 'hiddenButtons'}`}
+          className={`button buttonDescription  ${button.pageName === pageSelected && 'clickedButton'} ${button.pageName === "Game" && 'buttonStart'}  ${pageSelected === 'Game' && 'hiddenButtons'} ${pageSelected === 'Results' && 'result-btn'}`}
         >
         { button.title }
         </button>
