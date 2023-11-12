@@ -51,41 +51,48 @@
   letter-spacing: 0em;
   text-align: center;
   margin: 0px 508px 0px 630px;
+  color: #FFF;
 }
 
 .button {
+  font-family: Gilroy;
   width: 318px;
   height: 68px;
-  
   gap: 20px;
   border-radius: 30px;
   border: 2px solid #FFF;
   text-align: center;
-  
+  color: #FFF ;
   font-size: 24px;
-  font-style: normal;
+  font-style: bold;
   font-weight: 500;
-  line-height: normal;
+  line-height: 28px;
+  letter-spacing: 0em;
+  
 }
 
 .buttonDescription {
   background-color: rgba(28,28,28,0);
   text-align: center;
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 28px;
-  letter-spacing: 0em;
   margin: 80px 10px 0px 10px;
 }
 
 .buttonStart {
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 28px;
-  letter-spacing: 0em;
+  display: inline;
   color: black;
   background-color: rgba(255, 255, 255, 1);
   margin: 80px 10px 0px 10px;
+}
+
+
+
+.button:hover {
+  color: #a0a0a0;
+  border: 2px solid #a0a0a0;
+}
+.buttonStart:hover {
+  background-color: #A4C2F7;
+  color: black;
 }
 
 .header {
@@ -95,7 +102,7 @@
   justify-content: center;
   align-items: center;
   flex-shrink: 0;
-  margin: -200px 0px 0px 20px;
+  margin: 0px 0px 0px 20px;
 }
 
 .boyMenu {
@@ -106,14 +113,27 @@
   fill: #FFF;
   margin: 0px 1624px 0px 170px
 }
+
+.boyInGame {
+  width: 200.038px;
+  height: 450.034px;
+  top: 190px;
+}
 .girlMenu {
   position: absolute;
   transform: rotate(6.896deg);
   width: 196.5px;
   height: 393px;
   flex-shrink: 0;
-  margin: 0px 0.5px 0px 1600.24px;
+  margin:   0px 0.5px 0px 1600.24px;
 
+}
+
+.girlInGame {
+  width: 210.038px;
+  height: 450.034px;
+  top: 190px;
+  right: 150px;
 }
 
 .background {
@@ -132,9 +152,11 @@
 }
 
 .buttonContainer {
+  position: absolute;
   display: inline-block;
-  padding:  0px 500px 50px 500px;
+  padding:  0px 0px 50px 0px;
   align-items: center;
+  margin: 50px 0 0 500px;
 }
 
 .leftFearGirl {
@@ -180,3 +202,8 @@ line-height: normal;
   position: absolute;
   top: 200px;
 }
+
+.hiddenButtons {
+  display: none;
+}
+
