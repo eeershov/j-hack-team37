@@ -2,10 +2,10 @@
 
 ## Команда №37
 
-контакты:
+### Контакты:
 
-`@christinahant`
+Дизайн: `@christinahant`
 
-`@KiritoMorI`
+Фронтенд: `@KiritoMorI`
 
-`@ayayayayaayaa`
+Фулстак: `@ayayayayaayaa`
