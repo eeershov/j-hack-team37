@@ -30,10 +30,10 @@ const Duck: React.FC<DuckProps> = ({ uId, duck, x, y }) => {
       });
     }, duckSpeed);
     if(!hp) {
-      dispatch(incrementScore(1));
+      dispatch(incrementScore(duck.points));
     }
     return () => clearInterval(duckMoveLoop.current)
-  }, [duckSpeed, hp, dispatch]
+  }, [duckSpeed, hp, dispatch, duck.points]
   );
 
   const handleHit = (): void => {
