@@ -17,7 +17,7 @@ export default function Menu() {
       buttons.map(button => (
         <button 
           onClick={()=> dispatch(selectPage(button.pageName))} 
-          className={`button buttonDescription ${button.pageName === pageSelected && 'clickedButton'}`}
+          className={`button buttonDescription  ${button.pageName === pageSelected && 'clickedButton'} ${button.pageName === "Game" && 'buttonStart'}  ${pageSelected === 'Game' && 'hiddenButtons'}`}
         >
         { button.title }
         </button>

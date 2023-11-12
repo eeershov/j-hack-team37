@@ -61,8 +61,8 @@ const Game: React.FC = () => {
 
   return (
     <div className="Game">
-      <h1>Game</h1>
-      <p>Score: {score}</p>
+      <h1 className='title-game'>УДАЧИ!</h1>
+      <p  className='score'>Score: {score}</p>
       <Stopwatch />
       <div className="game-container">
         {
