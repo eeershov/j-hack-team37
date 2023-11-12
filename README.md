@@ -7,3 +7,6 @@
 Фронтенд: `@KiritoMorI`
 
 Фулстак: `@ayayayayaayaa`
+
+### Стек:
+`TypeScript`, `React`, `RTK`
