@@ -4,11 +4,11 @@
 
 ### Контакты:
 
-Дизайн: `@christinahant`
+Дизайн: [`@christinahant`](https://t.me/christinahant)
 
-Фронтенд: `@KiritoMorI`
+Фронтенд: [`@KiritoMorI`](https://t.me/KiritoMorI)
 
-Фулстак: `@ayayayayaayaa`
+Фулстак: [`@ayayayayaayaa`](https://t.me/ayayayayaayaa)
 
 ### Стек:
 `TypeScript`, `React`, `RTK`
