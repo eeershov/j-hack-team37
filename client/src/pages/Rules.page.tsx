@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import girlMainMenu from '../assets/girlMainMenu.svg';
 import BoyMainMenu from '../assets/BoyMainMenu.svg';
 import header from '../assets/header.svg';
