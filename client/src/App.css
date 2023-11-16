@@ -95,13 +95,6 @@ body {
   text-transform: uppercase;
   margin: 0;
 }
-.fears-page .title {
-  padding-top: 30px;
-}
-
-.fears-page {
-  height: 100%;
-}
 .rules {
   font-size: 28px;
   font-weight: 500;
@@ -110,7 +103,15 @@ body {
   color: #FFF;
 }
 
+.fears-page .title {
+  padding-top: 30px;
+}
+
+.fears-page {
+  height: 100%;
+}
 .fears-list {
+  padding-left: 6rem;
   margin-top: 60px;
   display: flex;
   flex-wrap: wrap;

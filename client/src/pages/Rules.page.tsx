@@ -3,18 +3,13 @@ import BoyMainMenu from '../assets/BoyMainMenu.svg';
 import header from '../assets/header.svg';
 import '../App.css';
 import Menu from '../components/Menu';
+import BackgroundImages from '../components/BackgroundImages';
 
 const StartMenu = function () {
 
   return (
     <div className='rules-page'>
-      <div className='background-images-block'>
-        <img src={header} className='header-image' alt="header" />
-        <div className='header-boyngirl'>
-          <img src={BoyMainMenu} className="header-illustration boyMenu" alt="boyMenu" />
-          <img src={girlMainMenu} className="header-illustration girlMenu" alt="girlMenu" />
-        </div>
-      </div>
+      <BackgroundImages HeaderImg={header} LeftImg={BoyMainMenu} RightImg={girlMainMenu} />
       <div className='title-block'>
         <h2 className='title'>Мини-игра</h2>
         <h2 className="title">Страхи приемных детей</h2>
