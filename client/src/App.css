@@ -1,36 +1,89 @@
-:root {
-  width: 100vw;
-  margin: 0 auto;
+img {
+  font-style: italic; /* to set apart alt if only it loads */
+  max-width: 100%;
+  height: auto;
+  vertical-align: auto;
+}
+
+#root {
+  margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+}
+
+
+body {
+  background-image: url('/background.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.rules-page {
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+}
+.background-images-block {
+  z-index: -100;
+  width: 100%;
+  pointer-events: none;
+}
+
+.header-image {
+  position: absolute;
+  width: 100%;
+}
+.header-boyngirl {
+  position: absolute;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 90%;
+  min-height: 100vh;
+}
+
+.header-illustration {
+  width: 15%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.boyMenu {
+  left: 0;
+}
+.girlMenu {
+  transform: rotate(6deg);
+  right: 0;
+}
+
+.title-block {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.body {
-  display: inline-flex;
-
-}
-
 .title {
-  height: 230px;
-  width: 1122px;
   color: #FFF;
   text-align: center;
   font-family: 'Kablammo';
@@ -39,19 +92,47 @@
   font-weight: 400;
   line-height: 120%; /* 115.2px */
   text-transform: uppercase;
-  margin: 50px 250px 0px 440px;
+  margin: 0;
+}
 
+.fears-page {
+  height: 100%;
 }
 .rules {
   font-size: 28px;
-  
   font-weight: 500;
   line-height: 33px;
-  letter-spacing: 0em;
   text-align: center;
-  margin: 0px 508px 0px 630px;
   color: #FFF;
 }
+
+.fears-list {
+  margin-top: 60px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  color: #FFF;
+  font-size: 24px;
+}
+.fears-list svg {
+  flex-shrink: 0;
+}
+.fears-list li {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  width: 600px;
+}
+
+.fears-list p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 32ch;
+}
+
 
 .button {
   
@@ -86,6 +167,7 @@
 
 .button:hover {
   color: #a0a0a0;
+  background-color: #A4C2F7a2;
   border: 2px solid #a0a0a0;
 }
 .buttonStart:hover {
@@ -93,40 +175,10 @@
   color: black;
 }
 
-.header {
-  display: flex;
-  width: 1900px;
-  height: 200.42px;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  margin: 0px 0px 0px 20px;
-}
-
-.boyMenu {
-  position: absolute;
-  width: 172.038px;
-  height: 393.034px;
-  flex-shrink: 0;
-  fill: #FFF;
-  margin: 0px 1624px 0px 170px
-}
 
 .boyInGame {
-  width: 200.038px;
-  height: 450.034px;
   top: 190px;
 }
-.girlMenu {
-  position: absolute;
-  transform: rotate(6.896deg);
-  width: 196.5px;
-  height: 393px;
-  flex-shrink: 0;
-  margin:   0px 0.5px 0px 1600.24px;
-
-}
-
 .girlInGame {
   width: 210.038px;
   height: 450.034px;
@@ -134,13 +186,6 @@
   right: 150px;
 }
 
-.background {
-  position: absolute;
-  top:0;
-  align-items: center;
-  flex-shrink: 0;
-  z-index: -1;
-}
 
 .fears {
   width: 647px;
@@ -151,10 +196,11 @@
 
 .buttonContainer {
   position: absolute;
-  display: inline-block;
-  padding:  0px 0px 50px 0px;
+  width: 100%;
+  flex-wrap: wrap;
+  display: flex;
   align-items: center;
-  margin: 50px 0 0 500px;
+  justify-content: center;
   bottom: 50px;
 }
 
@@ -182,12 +228,11 @@
   border-radius: 30px;
   border: 2px solid #A4C2F7;
   color: #A4C2F7;
-
-font-size: 24px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-}
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  }
 
 .btn-1 {
   margin: 0 0 0 175px;
