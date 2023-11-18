@@ -129,6 +129,9 @@ body {
     grid-template-columns: 1fr;
     padding-left: 2rem;
   }
+  nav {
+    flex-direction: column;
+  }
 }
 .fears-list svg {
   flex-shrink: 0;
@@ -193,7 +196,7 @@ nav {
   flex-shrink: 0;
   width: 100%;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
