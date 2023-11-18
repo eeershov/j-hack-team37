@@ -211,15 +211,6 @@ nav {
   line-height: normal;
   }
 
-.btn-1 {
-  margin: 0 0 0 175px;
-}
-
-.result-btn {
-  position:relative;
-  top: 0px;
-}
-
 .hiddenButtons {
   display: none;
 }

@@ -36,9 +36,6 @@ export default function Menu() {
           if (pageSelected === 'Game') {
             buttonStyles.push('hiddenButtons');
           }
-          if (pageSelected === 'Results') {
-            buttonStyles.push('result-btn')
-          }
 
           return (
             <button key={button.pageName}
