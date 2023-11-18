@@ -115,17 +115,19 @@ body {
   padding-bottom: 5px;
   flex: 1;
   padding-left: 6rem;
+  margin-left: auto;
+  margin-right: auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 5px;
   color: #FFF;
   font-size: 20px;
 }
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   /* Change to a single column layout for narrow screens */
   .fears-list {
     grid-template-columns: 1fr;
-    padding-left: 0;
+    padding-left: 2rem;
   }
 }
 .fears-list svg {
@@ -186,7 +188,7 @@ body {
 
 nav {
   align-self: flex-end;
-  padding-bottom: 1rem;
+  padding-bottom: 6rem;
   flex-grow: 0;
   flex-shrink: 0;
   width: 100%;
@@ -195,10 +197,6 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.rules-page nav {
-  padding-bottom: 6rem;
 }
 
 .clickedButton {
