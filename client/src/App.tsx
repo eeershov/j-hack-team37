@@ -1,10 +1,10 @@
 import './App.css'
-import CurrentPage from './pages'
+import RenderCurrentPage from './pages'
 
 function App() {
   return (
     <>
-      <CurrentPage/>
+      <RenderCurrentPage />
     </>
   )
 }

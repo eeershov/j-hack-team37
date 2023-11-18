@@ -1,63 +1,154 @@
-:root {
-  width: 100vw;
-  margin: 0 auto;
+* {
   padding: 0;
+  margin: 0;
+}
+img {
+  font-style: italic; /* to set apart alt if only it loads */
+  max-width: 100%;
+  height: auto;
+  vertical-align: auto;
+}
+html, body {
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 0;
+  margin: 0;
+}
+html, body {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100%;
+}
+.content {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+body {
+  background-image: url('/background.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.background-images-block {
+  z-index: -100;
+  width: 100%;
+  pointer-events: none;
+}
+
+.header-image {
+  position: absolute;
+  width: 100%;
+}
+.header-boyngirl {
+  position: absolute;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 90%;
+  min-height: 100%;
+}
+
+.header-illustration {
+  width: 15%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.boyMenu {
+  left: 0;
+}
+.girlMenu {
+  transform: rotate(6deg);
+  right: 0;
+}
+
+.title-block {
+  display: flex;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.body {
-  display: inline-flex;
-
-}
-
 .title {
-  height: 230px;
-  width: 1122px;
   color: #FFF;
   text-align: center;
   font-family: 'Kablammo';
-  font-size: 80px;
+  font-size: 60px;
   font-style: normal;
   font-weight: 400;
   line-height: 120%; /* 115.2px */
   text-transform: uppercase;
-  margin: 50px 250px 0px 440px;
-
+  margin: 0;
 }
 .rules {
   font-size: 28px;
-  
   font-weight: 500;
   line-height: 33px;
-  letter-spacing: 0em;
   text-align: center;
-  margin: 0px 508px 0px 630px;
   color: #FFF;
 }
 
+.fears-page .title {
+  padding-top: 1rem;
+}
+
+.fears-list {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  flex: 1;
+  padding-left: 6rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  color: #FFF;
+  font-size: 20px;
+}
+@media (max-width: 600px) {
+  /* Change to a single column layout for narrow screens */
+  .fears-list {
+    grid-template-columns: 1fr;
+    padding-left: 0;
+  }
+}
+.fears-list svg {
+  flex-shrink: 0;
+}
+.fears-list li {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  align-items: center;
+}
+
+.fears-list p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+
 .button {
-  
   width: 318px;
   height: 68px;
-  gap: 20px;
   border-radius: 30px;
   border: 2px solid #FFF;
   text-align: center;
@@ -72,20 +163,19 @@
 .buttonDescription {
   background-color: rgba(28,28,28,0);
   text-align: center;
-  margin: 80px 10px 0px 10px;
 }
 
 .buttonStart {
   display: inline;
   color: black;
   background-color: rgba(255, 255, 255, 1);
-  margin: 80px 10px 0px 10px;
 }
 
 
 
 .button:hover {
   color: #a0a0a0;
+  background-color: #A4C2F7a2;
   border: 2px solid #a0a0a0;
 }
 .buttonStart:hover {
@@ -93,121 +183,33 @@
   color: black;
 }
 
-.header {
+
+nav {
+  align-self: flex-end;
+  padding-bottom: 1rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 20px;
   display: flex;
-  width: 1900px;
-  height: 200.42px;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
-  margin: 0px 0px 0px 20px;
 }
 
-.boyMenu {
-  position: absolute;
-  width: 172.038px;
-  height: 393.034px;
-  flex-shrink: 0;
-  fill: #FFF;
-  margin: 0px 1624px 0px 170px
-}
-
-.boyInGame {
-  width: 200.038px;
-  height: 450.034px;
-  top: 190px;
-}
-.girlMenu {
-  position: absolute;
-  transform: rotate(6.896deg);
-  width: 196.5px;
-  height: 393px;
-  flex-shrink: 0;
-  margin:   0px 0.5px 0px 1600.24px;
-
-}
-
-.girlInGame {
-  width: 210.038px;
-  height: 450.034px;
-  top: 190px;
-  right: 150px;
-}
-
-.background {
-  position: absolute;
-  top:0;
-  align-items: center;
-  flex-shrink: 0;
-  z-index: -1;
-}
-
-.fears {
-  width: 647px;
-  align-items: center;
-  margin: -70px 750px 0px 750.24px;
-  gap: 60px;
-}
-
-.buttonContainer {
-  position: absolute;
-  display: inline-block;
-  padding:  0px 0px 50px 0px;
-  align-items: center;
-  margin: 50px 0 0 500px;
-  bottom: 50px;
-}
-
-.leftFearGirl {
-  position: absolute;
-  top: 250px;
-  width: 172.038px;
-  height: 393.034px;
-  flex-shrink: 0;
-  fill: #FFF;
-  margin: 0px 1624px 0px 170px
-}
-
-.rightFearGirl {
-  position: absolute;
-  top: 250px;
-  transform: rotate(6.896deg);
-  width: 196.5px;
-  height: 393px;
-  flex-shrink: 0;
-  margin:   0px 0.5px 0px 1600.24px;
+.rules-page nav {
+  padding-bottom: 6rem;
 }
 
 .clickedButton {
   border-radius: 30px;
   border: 2px solid #A4C2F7;
   color: #A4C2F7;
-
-font-size: 24px;
-font-style: normal;
-font-weight: 500;
-line-height: normal;
-}
-
-.btn-1 {
-  margin: 0 0 0 175px;
-}
-
-.title-result {
-  position: absolute;
-  top: 200px;
-}
-
-.result-btn {
-  position:relative;
-  top: 0px;
-  
-}
-
-.result-header {
-  position: absolute;
-  top: 0px;
-}
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  }
 
 .hiddenButtons {
   display: none;
