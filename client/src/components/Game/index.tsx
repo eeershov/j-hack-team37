@@ -40,7 +40,7 @@ const Game: React.FC = () => {
   }
 
   return (
-    <div className="Game">
+    <div className="game-component">
       <h1 className='title-game'>УДАЧИ!</h1>
       <p className='score'>Счёт: {score}</p>
       <Stopwatch />
