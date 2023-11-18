@@ -184,17 +184,6 @@ body {
 }
 
 
-.boyInGame {
-  top: 190px;
-}
-.girlInGame {
-  width: 210.038px;
-  height: 450.034px;
-  top: 190px;
-  right: 150px;
-}
-
-
 nav {
   align-self: flex-end;
   padding-bottom: 1rem;
@@ -226,19 +215,8 @@ nav {
   margin: 0 0 0 175px;
 }
 
-.title-result {
-  position: absolute;
-  top: 200px;
-}
-
 .result-btn {
   position:relative;
-  top: 0px;
-  
-}
-
-.result-header {
-  position: absolute;
   top: 0px;
 }
 
