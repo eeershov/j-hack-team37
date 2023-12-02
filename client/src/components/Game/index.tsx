@@ -1,37 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import Duck from './Duck';
-import { v4 as uuidv4 } from 'uuid';
+import React from 'react';
+// import Duck from './Duck';
+// import { DuckType } from '../../interfaces/Duck';
+// import { v4 as uuidv4 } from 'uuid';
 import './game.css';
 import Stopwatch from '../StopWatch';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { playGame, selectPage } from '../../app/gameSlice';
-import { possibleDucks as possibleDuckies } from './possibleDucks';
+import Canvas from './Canvas';
+
 
 
 const Game: React.FC = () => {
   const score = useAppSelector((state) => state.game.gameScore);
-  const [ducks, setDucks] = useState<React.ReactElement[]>([]);
-  const [HEIGHT, WIDTH] = [400, 600];
-  const isGameStarted = useAppSelector((state) => state.game.isGameStarted);
+  // const [ducks, setDucks] = useState<React.ReactElement[]>([]);
+  const [HEIGHT, WIDTH] = [600, 800];
+  // const isGameStarted = useAppSelector((state) => state.game.isGameStarted);
   const dispatch = useAppDispatch();
 
 
-  useEffect(() => {
-    setDucks(
-      possibleDuckies.map(duck => {
-        const uId = uuidv4();
-        return (
-          <Duck
-            key={uId} uId={uId}
-            duck={duck}
-            x={(Math.random() * WIDTH) % WIDTH}
-            y={(Math.random() * HEIGHT) % HEIGHT}
-          />
-        )
-      }
-      )
-    )
-  }, [HEIGHT, WIDTH])
+  // useEffect(() => {
+  //   setDucks(
+  //     possibleDuckies.map(duck => {
+  //       const uId = uuidv4();
+  //       return (
+  //         <Duck
+  //           key={uId} uId={uId}
+  //           duck={duck}
+  //           x={(Math.random() * WIDTH) % WIDTH}
+  //           y={(Math.random() * HEIGHT) % HEIGHT}
+  //         />
+  //       )
+  //     }
+  //     )
+  //   )
+  // }, [HEIGHT, WIDTH])
 
   // :^)
   if (score >= 240) {
@@ -45,8 +47,9 @@ const Game: React.FC = () => {
       <p className='score'>Счёт: {score}</p>
       <Stopwatch />
       <div className="game-container">
+        <Canvas width={WIDTH} height={HEIGHT} />
         {
-          isGameStarted ? ducks : <button className='start-game-button' onClick={() => dispatch(playGame(true))}>НАЧАТЬ ИГРУ {isGameStarted}</button>
+          // isGameStarted ? ducks : <button className='start-game-button' onClick={() => dispatch(playGame(true))}>НАЧАТЬ ИГРУ {isGameStarted}</button>
         }
       </div>
     </div>
