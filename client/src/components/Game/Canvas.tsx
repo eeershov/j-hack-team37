@@ -9,7 +9,7 @@ class Ducky {
   private monsterIcons = [
     Icon.Monster1Icon, Icon.Monster2Icon, Icon.Monster3Icon, Icon.Monster4Icon, Icon.Monster5Icon, Icon.Monster6Icon, Icon.Monster7Icon, Icon.Monster8Icon, Icon.Monster9Icon, Icon.Monster10Icon, Icon.Monster11Icon, Icon.Monster12Icon
   ];
-  private cachedIcon: OffscreenCanvas | null = null;
+  private cachedIcon: ImageBitmap | null = null;
 
   constructor(
     public x: number,
@@ -22,19 +22,18 @@ class Ducky {
     this.monsterIcon = this.monsterIcons[this.monsterTypeNum]({ height: this.height, width: this.width });
   }
 
-  getIcon() {
+  async getIcon() {
     if (this.cachedIcon !== null) {
       return this.cachedIcon;
     }
-    const offscreenCanvas = new OffscreenCanvas(this.width, this.height);
-    const offscreenContext = offscreenCanvas.getContext("2d", { alpha: true })!;
     const image = new Image();
     const svgString = renderToStaticMarkup(this.monsterIcon);
     const dataUrl = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svgString)}`;
     image.src = dataUrl;
-    offscreenContext.drawImage(image, 0, 0, this.width, this.height);
-    this.cachedIcon = offscreenContext.canvas;
-    return offscreenContext.canvas;
+    await image.decode();
+    const bmp = await createImageBitmap(image);
+    this.cachedIcon = bmp;
+    return this.cachedIcon;
   }
 }
 
@@ -63,26 +62,27 @@ function Canvas(props: { width: number; height: number }): JSX.Element {
       ducks.push(ducky);
     }
 
-    const drawDucks = (ctx: CanvasRenderingContext2D) => {
-      ducks.map((duck) => {
+    const drawDucks = async (ctx: CanvasRenderingContext2D) => {
+      ducks.map(async (duck) => {
         // draw current frame
-        ctx.drawImage(duck.getIcon(), Math.floor(duck.x), Math.floor(duck.y), duck.width, duck.height);
+        const image = await duck.getIcon();
+        ctx.drawImage(image, Math.floor(duck.x), Math.floor(duck.y), duck.width, duck.height);
 
         // Move the duck for next frame
         duck.x += Math.floor(duck.speed);
         duck.y += Math.floor(duck.speed);
         // If the duck goes off the screen, bounce it back to the other position
         if (duck.x > ctx.canvas.width || duck.y > ctx.canvas.height || duck.x < 0 || duck.y < 0) {
-          console.log('out of bounds')
+          console.log('out of bounds');
           duck.speed = duck.speed * -1;
         }
       });
     };
 
-    const gameLoop = (ctx: CanvasRenderingContext2D) => {
-      ctx.fillStyle = "yellow";
+    const gameLoop = async (ctx: CanvasRenderingContext2D) => {
+      ctx.fillStyle = "grey";
       ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-      drawDucks(ctx);
+      await drawDucks(ctx);
     };
 
     const handleCanvasMouseDown = (event: MouseEvent) => {
@@ -108,8 +108,8 @@ function Canvas(props: { width: number; height: number }): JSX.Element {
     canvas.addEventListener("mousedown", handleCanvasMouseDown);
 
     let animationFrameId: number;
-    const render = () => {
-      gameLoop(context);
+    const render = async () => {
+      await gameLoop(context);
       animationFrameId = window.requestAnimationFrame(render);
     };
     render();
