@@ -6,7 +6,7 @@ import './game.css';
 import Stopwatch from '../StopWatch';
 import { useAppSelector, useAppDispatch } from '../../app/hooks';
 import { playGame, selectPage } from '../../app/gameSlice';
-import Canvas from './Canvas';
+import GameWindow from './GameWindow';
 
 
 
@@ -47,7 +47,7 @@ const Game: React.FC = () => {
       <p className='score'>Счёт: {score}</p>
       <Stopwatch />
       <div className="game-container">
-        <Canvas width={WIDTH} height={HEIGHT} />
+        <GameWindow width={WIDTH} height={HEIGHT} />
         {
           // isGameStarted ? ducks : <button className='start-game-button' onClick={() => dispatch(playGame(true))}>НАЧАТЬ ИГРУ {isGameStarted}</button>
         }
