@@ -1,51 +1,33 @@
 import { useRef, useEffect } from 'react'
-import { Ducky } from './GameWindow';
+import { GameLoop, GameRoundData, generateDucks, handleCanvasMouseDown } from './GameLogic';
 
-const useCanvas = ({ gameLoop, gameRoundData }: { gameLoop: (ctx: CanvasRenderingContext2D, time: number, deltaTime: number) => void, gameRoundData: { ducks: Ducky[], DUCKS_NUM: number } }) => {
 
+const useCanvas = ({ gameLoop }: { gameLoop: GameLoop }) => {
+  const gameRoundDataRef = useRef<GameRoundData>(generateDucks({ width: 800, height: 600 }));
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const gameRoundData = gameRoundDataRef.current;
   useEffect(() => {
-    console.log(gameRoundData);
     const canvas = canvasRef.current!;
     const context = canvas.getContext('2d') as CanvasRenderingContext2D; // bro trust me it's going to be here
+    canvas.addEventListener("mousedown", (event) => handleCanvasMouseDown(event, gameRoundData, context));
+
+    // numbers for game loop
     let animationFrameId: number;
-    let prevTimeStamp: number;
-
-    const handleCanvasMouseDown = (event: MouseEvent) => {
-      event.preventDefault();
-      const mouseX = event.clientX - canvas.getBoundingClientRect().left;
-      const mouseY = event.clientY - canvas.getBoundingClientRect().top;
-      const ducks = gameRoundData.ducks;
-
-      // Loop through the ducks and check if the click is within a duck's bounding box
-      ducks.forEach((duck, duckIndex) => {
-        if (
-          mouseX >= duck.x &&
-          mouseX <= duck.x + duck.width &&
-          mouseY >= duck.y &&
-          mouseY <= duck.y + duck.height
-        ) {
-          // The click is on the current duck
-          console.log("Clicked on duck:", duck);
-          ducks.splice(duckIndex, 1);
-        }
-      });
-    };
-    canvas.addEventListener("mousedown", handleCanvasMouseDown);
-
-
+    let prevTimeStamp = 0;
     const render = (timeStamp: number) => {
       if (!prevTimeStamp) prevTimeStamp = timeStamp;
       const deltaTime = timeStamp - prevTimeStamp;
+      const deltaTimeClamped = Math.min(deltaTime, 100);
       prevTimeStamp = timeStamp;
-      gameLoop(context, timeStamp, deltaTime);
+      gameLoop({ ctx: context, time: timeStamp, deltaTime: deltaTimeClamped, gameRoundData });
       animationFrameId = window.requestAnimationFrame(render);
     }
-    window.requestAnimationFrame(render);
+    render(prevTimeStamp);
+
 
     return () => {
       window.cancelAnimationFrame(animationFrameId);
-      canvas.removeEventListener("mousedown", handleCanvasMouseDown);
+      canvas.removeEventListener("mousedown", (event) => handleCanvasMouseDown(event, gameRoundData, context));
     }
   }, [gameLoop, gameRoundData]);
 
