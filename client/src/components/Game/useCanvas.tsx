@@ -6,10 +6,20 @@ const useCanvas = ({ gameLoop }: { gameLoop: GameLoop }) => {
   const gameRoundDataRef = useRef<GameRoundData>(generateDucks({ width: 800, height: 600 }));
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const gameRoundData = gameRoundDataRef.current;
+  const isFocusedRef = useRef(true);
+
   useEffect(() => {
     const canvas = canvasRef.current!;
     const context = canvas.getContext('2d') as CanvasRenderingContext2D; // bro trust me it's going to be here
     canvas.addEventListener("mousedown", (event) => handleCanvasMouseDown(event, gameRoundData, context));
+    const handleWindowFocus = () => {
+      isFocusedRef.current = true;
+    };
+    const handleWindowBlur = () => {
+      isFocusedRef.current = false;
+    };
+    window.addEventListener("focus", handleWindowFocus);
+    window.addEventListener("blur", handleWindowBlur);
 
     // numbers for game loop
     let animationFrameId: number;
@@ -19,7 +29,9 @@ const useCanvas = ({ gameLoop }: { gameLoop: GameLoop }) => {
       const deltaTime = timeStamp - prevTimeStamp;
       const deltaTimeClamped = Math.min(deltaTime, 100);
       prevTimeStamp = timeStamp;
-      gameLoop({ ctx: context, time: timeStamp, deltaTime: deltaTimeClamped, gameRoundData });
+      if (isFocusedRef.current) {
+        gameLoop({ ctx: context, time: timeStamp, deltaTime: deltaTimeClamped, gameRoundData });
+      }
       animationFrameId = window.requestAnimationFrame(render);
     }
     render(prevTimeStamp);
@@ -27,6 +39,8 @@ const useCanvas = ({ gameLoop }: { gameLoop: GameLoop }) => {
 
     return () => {
       window.cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("focus", handleWindowFocus);
+      window.removeEventListener("blur", handleWindowBlur);
       canvas.removeEventListener("mousedown", (event) => handleCanvasMouseDown(event, gameRoundData, context));
     }
   }, [gameLoop, gameRoundData]);
