@@ -25,14 +25,16 @@ export function generateDucks({
   // generate starting ducks data
   for (let i = 0; i < DUCKS_NUM; i++) {
     const widhtAndHeight = 55 + 10 * Math.floor(Math.random());
-    const ducky: Ducky = new Ducky(
-      Math.floor(Math.random() * width),
-      Math.floor(Math.random() * height),
-      widhtAndHeight,
-      widhtAndHeight,
-      Math.floor(100 + Math.random() * 200),
-      Math.floor(Math.random() * 12)
-    );
+    const ducky: Ducky = new Ducky({
+      drawPosition: {
+        x: Math.floor(Math.random() * width),
+        y: Math.floor(Math.random() * height),
+      },
+      width: widhtAndHeight,
+      height: widhtAndHeight,
+      speed: Math.floor(100 + Math.random() * 250),
+      monsterTypeNum: Math.floor(Math.random() * 12),
+    });
     ducks.push(ducky);
   }
   return gameRoundData;
@@ -46,7 +48,7 @@ export function updateDucksPositions({
   deltaTime: number;
 }) {
   gameRoundData.ducks.forEach((duck) => {
-    duck.move(deltaTime);
+    duck.update(deltaTime);
   });
 }
 
@@ -61,8 +63,8 @@ export async function drawDucks({
     const image = await duck.getIcon();
     ctx.drawImage(
       image,
-      Math.floor(duck.x),
-      Math.floor(duck.y),
+      Math.floor(duck.drawPosition.x),
+      Math.floor(duck.drawPosition.y),
       duck.width,
       duck.height
     );
@@ -87,10 +89,10 @@ export const handleCanvasMouseDown = (
     for (let i = 0; i < ducks.length; i++) {
       const duck = ducks[i];
       if (
-        mouseX >= duck.x &&
-        mouseX <= duck.x + duck.width &&
-        mouseY >= duck.y &&
-        mouseY <= duck.y + duck.height
+        mouseX >= duck.drawPosition.x &&
+        mouseX <= duck.drawPosition.x + duck.width &&
+        mouseY >= duck.drawPosition.y &&
+        mouseY <= duck.drawPosition.y + duck.height
       ) {
         // The click is on the current duck
         ducks.splice(i, 1);
