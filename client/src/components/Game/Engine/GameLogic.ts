@@ -1,9 +1,11 @@
+import GameTime from '../../../interfaces/GameTime';
 import { Ducky } from './Ducky';
 
 export interface GameRoundData {
   ducks: Ducky[];
   ducksNum: number;
   isStarted: boolean;
+  time: GameTime;
 }
 
 export function generateDucks({
@@ -19,6 +21,11 @@ export function generateDucks({
     ducks,
     ducksNum: DUCKS_NUM,
     isStarted: false,
+    time: {
+      minutes: 0,
+      seconds: 0,
+      milliseconds: 0,
+    },
   };
 
   // generate starting ducks data

@@ -1,10 +1,12 @@
-type TimeType = {
-  minutes: number;
-  seconds: number;
-  milliseconds: number;
-};
+import type GameTime from '../../../interfaces/GameTime';
 
-function stopwatch({ time, deltaTime }: { time: TimeType; deltaTime: number }) {
+function stopwatch({
+  time,
+  deltaTime,
+}: {
+  time: GameTime;
+  deltaTime: number;
+}): GameTime {
   time.milliseconds += deltaTime;
   if (time.milliseconds >= 1000) {
     time.seconds += 1;
@@ -19,7 +21,7 @@ function stopwatch({ time, deltaTime }: { time: TimeType; deltaTime: number }) {
 }
 
 class Stopwatch {
-  private time = {
+  private time: GameTime = {
     minutes: 0,
     seconds: 0,
     milliseconds: 0,
@@ -30,8 +32,12 @@ class Stopwatch {
   update(deltaTime: number) {
     this.time = stopwatch({ time: this.time, deltaTime });
   }
-  getTime() {
+  getTime(): GameTime {
     return this.time;
+  }
+
+  setGameTime(gameRoundDataTime: GameTime) {
+    gameRoundDataTime = this.time;
   }
 }
 

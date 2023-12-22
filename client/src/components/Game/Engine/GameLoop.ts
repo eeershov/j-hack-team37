@@ -71,6 +71,7 @@ export async function gameLoop({
 
   // continue counting time with stopwatch
   stopwatch.update(deltaTime);
+  stopwatch.setGameTime(gameRoundData.time);
 
   ctx.restore();
   ctx.fillStyle = 'grey';
