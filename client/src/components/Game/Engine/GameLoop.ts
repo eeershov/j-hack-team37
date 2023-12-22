@@ -1,77 +1,7 @@
-import { Ducky } from './Ducky';
 import ButtonCanvas from './Button';
-
-export interface GameRoundData {
-  ducks: Ducky[];
-  ducksNum: number;
-  isStarted: boolean;
-}
-
-export function generateDucks({
-  width,
-  height,
-}: {
-  width: number;
-  height: number;
-}): GameRoundData {
-  const ducks: Ducky[] = [];
-  const DUCKS_NUM = 12;
-  const gameRoundData: GameRoundData = {
-    ducks,
-    ducksNum: DUCKS_NUM,
-    isStarted: false,
-  };
-
-  // generate starting ducks data
-  for (let i = 0; i < DUCKS_NUM; i++) {
-    const widhtAndHeight = 55 + 10 * Math.floor(Math.random());
-    const ducky: Ducky = new Ducky({
-      drawPosition: {
-        x: Math.floor(Math.random() * width),
-        y: Math.floor(Math.random() * height),
-      },
-      width: widhtAndHeight,
-      height: widhtAndHeight,
-      speed: Math.floor(100 + Math.random() * 250),
-      monsterTypeNum: Math.floor(Math.random() * 12),
-    });
-    ducks.push(ducky);
-  }
-  return gameRoundData;
-}
-
-export function updateDucksPositions({
-  gameRoundData,
-  deltaTime,
-}: {
-  gameRoundData: GameRoundData;
-  deltaTime: number;
-}) {
-  gameRoundData.ducks.forEach((duck) => {
-    duck.update(deltaTime);
-  });
-}
-
-export async function drawDucks({
-  gameRoundData,
-  ctx,
-}: {
-  gameRoundData: GameRoundData;
-  ctx: CanvasRenderingContext2D;
-}) {
-  const drawPromises = gameRoundData.ducks.map(async (duck) => {
-    const image = await duck.getIcon();
-    ctx.drawImage(
-      image,
-      Math.floor(duck.drawPosition.x),
-      Math.floor(duck.drawPosition.y),
-      duck.width,
-      duck.height
-    );
-  });
-
-  await Promise.all(drawPromises);
-}
+import { Stopwatch } from './stopwatch';
+import { GameRoundData } from './GameLogic';
+import { updateDucksPositions, drawDucks } from './GameRenderingLogic';
 
 export const handleCanvasMouseDown = (
   event: MouseEvent,
@@ -115,6 +45,9 @@ export const StartButton = new ButtonCanvas({
   height: 140,
   title: 'Старт',
 });
+
+const stopwatch = new Stopwatch();
+
 export async function gameLoop({
   ctx,
   time,
@@ -135,6 +68,9 @@ export async function gameLoop({
     StartButton.drawButton(ctx);
     return;
   }
+
+  // continue counting time with stopwatch
+  stopwatch.update(deltaTime);
 
   ctx.restore();
   ctx.fillStyle = 'grey';

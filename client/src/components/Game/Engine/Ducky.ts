@@ -1,5 +1,7 @@
-import * as Icon from '../Icons';
+import * as Icon from '../../Icons';
 import { renderToStaticMarkup } from 'react-dom/server';
+
+type Point2D = { x: number; y: number };
 
 export class Ducky {
   monsterIcon: JSX.Element;
@@ -18,11 +20,11 @@ export class Ducky {
     Icon.Monster12Icon,
   ];
   private monsterJumpRange = 250;
-  private nextCoordinates: { x: number; y: number };
+  private nextCoordinates: Point2D;
   private cachedIcon: ImageBitmap | null = null;
   private accumulatedDistance = { x: 0, y: 0 };
-  public drawPosition: { x: number; y: number };
-  public realPosition: { x: number; y: number };
+  public drawPosition: Point2D;
+  public realPosition: Point2D;
   public width: number;
   public monsterTypeNum: number;
   public height: number;
@@ -34,7 +36,7 @@ export class Ducky {
     speed,
     monsterTypeNum,
   }: {
-    drawPosition: { x: number; y: number };
+    drawPosition: Point2D;
     width: number;
     height: number;
     speed: number;
@@ -121,7 +123,7 @@ export class Ducky {
     speed = this.speed,
     deltaTime,
   }: {
-    vector?: { x: number; y: number };
+    vector?: Point2D;
     speed?: number;
     deltaTime: number;
   }) {

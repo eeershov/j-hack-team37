@@ -1,10 +1,5 @@
-// import { useRef, useEffect } from "react";
-// import { createNoise2D } from 'simplex-noise';
-
-import { gameLoop } from "./GameLogic";
+import { gameLoop } from "./Engine/GameLoop";
 import useCanvas from "./useCanvas";
-
-
 
 
 function GameWindow(props: { width: number; height: number }): JSX.Element {
