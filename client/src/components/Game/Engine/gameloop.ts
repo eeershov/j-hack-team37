@@ -2,6 +2,8 @@ import ButtonCanvas from './element.button';
 import { Stopwatch } from './stopwatch';
 import { GameRoundData } from './game.logic';
 import { updateDucksPositions, drawDucks } from './game.renderinglogic';
+import { store } from '../../../app/store';
+import { setGameTime } from '../../../app/gameSlice';
 
 export const handleCanvasMouseDown = (
   event: MouseEvent,
@@ -50,12 +52,10 @@ const stopwatch = new Stopwatch();
 
 export async function gameLoop({
   ctx,
-  time,
   deltaTime,
   gameRoundData,
 }: {
   ctx: CanvasRenderingContext2D;
-  time: number;
   deltaTime: number;
   gameRoundData: GameRoundData;
 }) {
@@ -71,7 +71,8 @@ export async function gameLoop({
 
   // continue counting time with stopwatch
   stopwatch.update(deltaTime);
-  stopwatch.setGameTime(gameRoundData.time);
+  gameRoundData.time = stopwatch.getTime();
+  store.dispatch(setGameTime(gameRoundData.time));
 
   ctx.restore();
   ctx.fillStyle = 'grey';

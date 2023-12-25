@@ -30,14 +30,10 @@ class Stopwatch {
   constructor() {}
 
   update(deltaTime: number) {
-    this.time = stopwatch({ time: this.time, deltaTime });
+    this.time = stopwatch({ time: { ...this.time }, deltaTime });
   }
   getTime(): GameTime {
     return this.time;
-  }
-
-  setGameTime(gameRoundDataTime: GameTime) {
-    gameRoundDataTime = this.time;
   }
 }
 

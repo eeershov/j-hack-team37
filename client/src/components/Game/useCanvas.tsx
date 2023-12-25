@@ -30,7 +30,7 @@ const useCanvas = ({ gameLoop }: { gameLoop: GameLoop }) => {
       const deltaTimeClamped = Math.min(deltaTime, 100);
       prevTimeStamp = timeStamp;
       if (isFocusedRef.current) {
-        gameLoop({ ctx: context, time: timeStamp, deltaTime: deltaTimeClamped, gameRoundData });
+        gameLoop({ ctx: context, deltaTime: deltaTimeClamped, gameRoundData });
       }
       animationFrameId = window.requestAnimationFrame(render);
     }

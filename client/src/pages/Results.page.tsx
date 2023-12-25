@@ -3,7 +3,6 @@ import resultGirl from '../assets/resultGirl.svg';
 import header from '../assets/header.svg';
 import Menu from '../components/Menu';
 import { useAppSelector } from '../app/hooks';
-import { timeToHuman } from '../utils/timeToHuman';
 import BackgroundImages from '../components/BackgroundImages';
 
 
@@ -18,7 +17,7 @@ const ResultsWindow = function () {
         <BackgroundImages HeaderImg={header} LeftImg={resultBoy} RightImg={resultGirl} />
         <div className='title-block'>
           <h2 className="title">ХОРОШАЯ РАБОТА!
-            <br />КОЛИЧЕСТВО ОЧКОВ: {gameScore} <br />ВРЕМЯ: {timeToHuman(gameTime)}</h2>
+            <br />КОЛИЧЕСТВО ОЧКОВ: {gameScore} <br />ВРЕМЯ: {gameTime.minutes} : {gameTime.seconds} : {gameTime.milliseconds}</h2>
 
         </div>
       </main>
