@@ -3,7 +3,7 @@ import { Stopwatch } from './stopwatch';
 import { GameRoundData } from './game.logic';
 import { updateDucksPositions, drawDucks } from './game.renderinglogic';
 import { store } from '../../../app/store';
-import { setGameTime } from '../../../app/gameSlice';
+import { setGameTime, playGame, selectPage } from '../../../app/gameSlice';
 
 export const handleCanvasMouseDown = (
   event: MouseEvent,
@@ -80,5 +80,9 @@ export async function gameLoop({
 
   updateDucksPositions({ gameRoundData, deltaTime });
   await drawDucks({ gameRoundData, ctx });
+  if (gameRoundData.ducks.length === 0) {
+    store.dispatch(playGame(false));
+    store.dispatch(selectPage('Results'));
+  }
 }
 export type GameLoop = typeof gameLoop;

@@ -17,8 +17,11 @@ const ResultsWindow = function () {
         <BackgroundImages HeaderImg={header} LeftImg={resultBoy} RightImg={resultGirl} />
         <div className='title-block'>
           <h2 className="title">ХОРОШАЯ РАБОТА!
-            <br />КОЛИЧЕСТВО ОЧКОВ: {gameScore} <br />ВРЕМЯ: {gameTime.minutes} : {gameTime.seconds} : {gameTime.milliseconds}</h2>
-
+            <br />КОЛИЧЕСТВО ОЧКОВ: {gameScore}
+            <br />{`ВРЕМЯ: ${gameTime.minutes} 
+            : ${gameTime.seconds} 
+            : ${Number(gameTime.milliseconds / 10).toFixed(0)}`}
+          </h2>
         </div>
       </main>
       <Menu />
