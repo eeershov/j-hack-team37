@@ -1,4 +1,4 @@
-import { GameRoundData } from './GameLogic';
+import { GameRoundData } from './game.logic';
 
 export function updateDucksPositions({
   gameRoundData,

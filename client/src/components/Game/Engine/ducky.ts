@@ -1,7 +1,8 @@
 import * as Icon from '../../Icons';
 import { renderToStaticMarkup } from 'react-dom/server';
-
-type Point2D = { x: number; y: number };
+import { Point2D } from '../../../interfaces/Point2D';
+import { randomJumpAtRadius } from './ducky.utils';
+import { calcScaledVector, calcUnitVector } from './ducky.utils';
 
 export class Ducky {
   monsterIcon: JSX.Element;
@@ -71,66 +72,21 @@ export class Ducky {
     return this.cachedIcon;
   }
 
-  getNextRandomCoordinates(
-    curX = this.realPosition.x,
-    curY = this.realPosition.y
-  ) {
-    // get a random point on a circumference
-    // x = cx + r * cos(a)
-    // y = cy + r * sin(a)
-    // Where r is the radius, cx,cy the origin, and a the angle. (in radians)
-    // function degToRad(degrees) {
-    //   return degrees * (Math.PI / 180);
-    // }
-    let x = -1;
-    let y = -1;
-    while (x < 0 || x > 800 || y < 0 || y > 600) {
-      // limit area to the game field
-      const angle = Math.round(Math.random() * 360) * (Math.PI / 180);
-      x = Math.round(curX + Math.cos(angle) * this.monsterJumpRange);
-      y = Math.round(curY + Math.sin(angle) * this.monsterJumpRange);
-    }
-    return { x, y };
+  // Utility methods
+
+  getNextRandomCoordinates(): Point2D {
+    return randomJumpAtRadius({
+      currentX: this.realPosition.x,
+      currentY: this.realPosition.y,
+      areaWidth: 800,
+      areaHeight: 600,
+      monsterJumpRange: this.monsterJumpRange,
+    });
   }
 
-  /**
-  Calculates the normalized vector between two points.
-  @return The unit vector representing the direction from the current point to the target point.
-  */
-  unitVector(
-    curX = this.realPosition.x,
-    curY = this.realPosition.y,
-    targetX = this.nextCoordinates.x,
-    targetY = this.nextCoordinates.y
-  ) {
-    const vectorXY = { x: targetX - curX, y: targetY - curY };
-    // length of a vector, |V| = sqrt(x*x + y*y + z*z)
-    const vectorMagnitude = Math.sqrt(vectorXY.x ** 2 + vectorXY.y ** 2);
-    // normalize a vector, V/|V| = (x/|V|, y/|V|, z/|V|).
-    return {
-      x: vectorXY.x / vectorMagnitude,
-      y: vectorXY.y / vectorMagnitude,
-    };
-  }
-
-  distanceBetween(x1: number, y1: number, x2: number, y2: number) {
+  distanceBetween(x1: number, y1: number, x2: number, y2: number): number {
     const distance = Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
     return Math.floor(distance);
-  }
-
-  scaledVector({
-    vector = this.unitVector(),
-    speed = this.speed,
-    deltaTime,
-  }: {
-    vector?: Point2D;
-    speed?: number;
-    deltaTime: number;
-  }) {
-    return {
-      x: (vector.x * speed * deltaTime) / 1000,
-      y: (vector.y * speed * deltaTime) / 1000,
-    };
   }
 
   move(x: number, y: number) {
@@ -140,7 +96,6 @@ export class Ducky {
 
   update(deltaTime: number) {
     // update duck's state
-
     // updating duck's position
     const DISTANCE_THRESHOLD = 5;
     if (
@@ -155,7 +110,15 @@ export class Ducky {
     }
     // update it's position based on accumulatedDistance
     // move it if accumulatedDistance >=1 whole px in any direction
-    const scaledVector = this.scaledVector({ deltaTime });
+    const vector = calcUnitVector({
+      current: { x: this.realPosition.x, y: this.realPosition.y },
+      target: { x: this.nextCoordinates.x, y: this.nextCoordinates.y },
+    });
+    const scaledVector = calcScaledVector({
+      unitVector: vector,
+      speedOrRange: this.speed,
+      deltaTime,
+    });
     this.accumulatedDistance.x += scaledVector.x;
     this.accumulatedDistance.y += scaledVector.y;
     this.realPosition.x += scaledVector.x;

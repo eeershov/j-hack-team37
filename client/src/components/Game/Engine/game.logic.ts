@@ -1,5 +1,5 @@
 import GameTime from '../../../interfaces/GameTime';
-import { Ducky } from './Ducky';
+import { Ducky } from './ducky';
 
 export interface GameRoundData {
   ducks: Ducky[];

@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react'
-import { GameLoop, handleCanvasMouseDown } from './Engine/GameLoop';
-import { GameRoundData, generateDucks } from './Engine/GameLogic';
+import { GameLoop, handleCanvasMouseDown } from './Engine/gameloop';
+import { GameRoundData, generateDucks } from './Engine/game.logic';
 
 const useCanvas = ({ gameLoop }: { gameLoop: GameLoop }) => {
   const gameRoundDataRef = useRef<GameRoundData>(generateDucks({ width: 800, height: 600 }));

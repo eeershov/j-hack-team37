@@ -1,4 +1,4 @@
-import { gameLoop } from "./Engine/GameLoop";
+import { gameLoop } from "./Engine/gameloop";
 import useCanvas from "./useCanvas";
 
 

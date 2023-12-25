@@ -1,7 +1,7 @@
-import ButtonCanvas from './Button';
+import ButtonCanvas from './element.button';
 import { Stopwatch } from './stopwatch';
-import { GameRoundData } from './GameLogic';
-import { updateDucksPositions, drawDucks } from './GameRenderingLogic';
+import { GameRoundData } from './game.logic';
+import { updateDucksPositions, drawDucks } from './game.renderinglogic';
 
 export const handleCanvasMouseDown = (
   event: MouseEvent,
