@@ -1,5 +1,4 @@
 import ButtonCanvas from './element.button';
-import { Stopwatch } from './stopwatch';
 import { GameRoundData } from './game.logic';
 import { updateDucksPositions, drawDucks } from './game.renderinglogic';
 import { store } from '../../../app/store';
@@ -48,8 +47,6 @@ export const StartButton = new ButtonCanvas({
   title: 'Старт',
 });
 
-const stopwatch = new Stopwatch();
-
 export async function gameLoop({
   ctx,
   deltaTime,
@@ -61,6 +58,8 @@ export async function gameLoop({
 }) {
   const width = ctx.canvas.width;
   const height = ctx.canvas.height;
+
+  // draw start screen
   if (!gameRoundData.isStarted) {
     ctx.save();
     ctx.fillStyle = 'black';
@@ -69,17 +68,19 @@ export async function gameLoop({
     return;
   }
 
-  // continue counting time with stopwatch
-  stopwatch.update(deltaTime);
-  gameRoundData.time = stopwatch.getTime();
-  store.dispatch(setGameTime(gameRoundData.time));
+  // continue counting time with stopwatch and sync with store
+  gameRoundData.time.update(deltaTime);
+  store.dispatch(setGameTime(gameRoundData.time.getTime()));
 
+  // paint game area background
   ctx.restore();
   ctx.fillStyle = 'grey';
   ctx.fillRect(0, 0, width, height);
 
   updateDucksPositions({ gameRoundData, deltaTime });
   await drawDucks({ gameRoundData, ctx });
+
+  // finish the game if no alive ducks left
   if (gameRoundData.ducks.length === 0) {
     store.dispatch(playGame(false));
     store.dispatch(selectPage('Results'));
