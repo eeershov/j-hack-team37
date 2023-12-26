@@ -3,7 +3,7 @@ import {
   Monster7Icon, Monster8Icon, Monster9Icon, Monster10Icon, Monster11Icon, Monster12Icon
 } from '../Icons';
 
-import { DuckType } from "../../interfaces/Duck"
+import type { DuckType } from "../../interfaces/Duck"
 
 export const possibleDucks: DuckType[] = [
   { id: 1, name: 'Предательство', speed: 300, points: 10, monsterIcon: Monster1Icon },

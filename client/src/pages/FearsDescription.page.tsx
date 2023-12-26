@@ -15,7 +15,7 @@ const FearsDescription = function () {
           {possibleDucks.map(duck => {
             const MonsterIcon = duck.monsterIcon;
             return (
-              <li>
+              <li key={duck.name}>
                 <MonsterIcon width={64} height={64} />
                 <p>{duck.name}</p>
               </li>

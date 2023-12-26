@@ -1,45 +1,14 @@
 import React from 'react';
-// import Duck from './Duck';
-// import { DuckType } from '../../interfaces/Duck';
-// import { v4 as uuidv4 } from 'uuid';
 import './game.css';
 import Stopwatch from '../StopWatch';
-import { useAppSelector, useAppDispatch } from '../../app/hooks';
-import { playGame, selectPage } from '../../app/gameSlice';
+import { useAppSelector } from '../../app/hooks';
 import GameWindow from './GameWindow';
-
 
 
 const Game: React.FC = () => {
   const score = useAppSelector((state) => state.game.gameScore);
-  // const [ducks, setDucks] = useState<React.ReactElement[]>([]);
   const [HEIGHT, WIDTH] = [600, 800];
-  // const isGameStarted = useAppSelector((state) => state.game.isGameStarted);
-  const dispatch = useAppDispatch();
 
-
-  // useEffect(() => {
-  //   setDucks(
-  //     possibleDuckies.map(duck => {
-  //       const uId = uuidv4();
-  //       return (
-  //         <Duck
-  //           key={uId} uId={uId}
-  //           duck={duck}
-  //           x={(Math.random() * WIDTH) % WIDTH}
-  //           y={(Math.random() * HEIGHT) % HEIGHT}
-  //         />
-  //       )
-  //     }
-  //     )
-  //   )
-  // }, [HEIGHT, WIDTH])
-
-  // :^)
-  if (score >= 240) {
-    dispatch(playGame(false));
-    dispatch(selectPage('Results'));
-  }
 
   return (
     <div className="game-component">
@@ -48,9 +17,6 @@ const Game: React.FC = () => {
       <Stopwatch />
       <div className="game-container">
         <GameWindow width={WIDTH} height={HEIGHT} />
-        {
-          // isGameStarted ? ducks : <button className='start-game-button' onClick={() => dispatch(playGame(true))}>НАЧАТЬ ИГРУ {isGameStarted}</button>
-        }
       </div>
     </div>
   );
