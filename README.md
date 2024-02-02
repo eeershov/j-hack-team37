@@ -65,4 +65,4 @@ https://www.figma.com/file/5N4E7EM5Wbbw268hukZada/%D0%A1%D1%82%D1%80%D0%B0%D1%85
 3. http://localhost/
 
 ### Ссылка на деплой:
-https://j-hack-team37.vercel.app/
+https://eeershov.github.io/j-hack-team37/
